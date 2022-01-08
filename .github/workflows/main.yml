@@ -1,11 +1,13 @@
 name: A workflow for my Hello World file
-on: push
+on: [push, workflow_dispatch]
+defaults:
+  run:
+    shell: pwsh
 jobs:
   build:
     name: Hello world action
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: ./action-a
-        with:
-          MY_NAME: "Mona"
+      - uses: actions/checkout@v2
+      - name: Test with Pester
+        run: .\hola.ps1
